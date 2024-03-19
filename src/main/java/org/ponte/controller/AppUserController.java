@@ -23,11 +23,10 @@ import javax.validation.Valid;
 public class AppUserController {
 
     private final AppUserService appUserService;
-    private final ContactService contactService;
 
-    public AppUserController(AppUserService appUserService, ContactService contactService) {
+
+    public AppUserController(AppUserService appUserService) {
         this.appUserService = appUserService;
-        this.contactService = contactService;
     }
     @PostMapping("/createUser")
     public ResponseEntity<AppUserInfo> createAppUser(@Valid @RequestBody AppUserCreateCommand command){
@@ -36,12 +35,7 @@ public class AppUserController {
         return new ResponseEntity<>(appUserInfo, HttpStatus.CREATED);
     }
 
-    @PostMapping("/createContactForUser")
-    public ResponseEntity<ContactInfo> createContactForUser(@Valid @RequestBody ContactCreateCommand command){
-        log.info("Http request, POST / /api/users/createContactForUser");
-        ContactInfo contactInfo = contactService.createContactForUser(command);
-        return new ResponseEntity<>(contactInfo, HttpStatus.CREATED);
-    }
+
 
 
 

@@ -5,9 +5,10 @@ import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="Contact")
+@Table(name="contact")
 @Data
 @NoArgsConstructor
 public class Contact {
@@ -15,21 +16,18 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long contactId;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "company_name")
+    private String companyName;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "appUser_id")
     private AppUser appUser;
+
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<ContactLocation> contactLocationList;
 }
 
 

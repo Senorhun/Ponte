@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContactInfo {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
+    private String companyName;
+    private String description;
+
+
 }
 
 
