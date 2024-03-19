@@ -14,6 +14,7 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   jpa:
+    database: POSTGRESQL
     hibernate:
       ddl-auto: update
     properties:
@@ -30,6 +31,6 @@ logging:
   level:
     org.hotel: info
     org.springframework.web: info
-    org.hibernate: error
+    org.hibernate: info
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

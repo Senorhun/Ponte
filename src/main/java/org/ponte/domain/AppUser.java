@@ -7,9 +7,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name="user")
+@Table(name="app_user")
 @Data
 @NoArgsConstructor
 public class AppUser {
@@ -17,6 +18,7 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
 
+    //company name nem kell emberi név
     @Column(name = "first_name")
     private String firstName;
 
@@ -36,4 +38,7 @@ public class AppUser {
     @UpdateTimestamp
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate;
+
+    @OneToMany(mappedBy = "appUser")
+    List<Contact> contactList;
 }
