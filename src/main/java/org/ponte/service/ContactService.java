@@ -49,4 +49,9 @@ public class ContactService {
         }
         return appUserOptional.get();
     }
+
+    public void deleteContact(Long id) {
+        Contact contact = findContactById(id);
+        contactRepository.delete(contact);
+    }
 }
