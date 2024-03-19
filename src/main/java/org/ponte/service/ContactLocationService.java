@@ -5,6 +5,7 @@ import org.ponte.domain.Contact;
 import org.ponte.domain.ContactLocation;
 import org.ponte.dto.ContactLocationCreateCommand;
 import org.ponte.dto.ContactLocationInfo;
+import org.ponte.exceptionHandling.ContactLocationNotFoundException;
 import org.ponte.repository.ContactLocationRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +46,7 @@ public class ContactLocationService {
     private ContactLocation findContactLocationById(Long contactLocationId) {
         Optional<ContactLocation> contactLocationOptional = contactLocationRepository.findById(contactLocationId);
         if(contactLocationOptional.isEmpty()){
-            // throw new ContactLocationNotFoundException(appUserId);
+             throw new ContactLocationNotFoundException(contactLocationId);
         }
         return contactLocationOptional.get();
     }

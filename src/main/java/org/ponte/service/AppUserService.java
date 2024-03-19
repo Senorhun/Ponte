@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.ponte.domain.AppUser;
 import org.ponte.dto.AppUserCreateCommand;
 import org.ponte.dto.AppUserInfo;
+import org.ponte.exceptionHandling.AppUserNotFoundException;
 import org.ponte.repository.AppUserRepository;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class AppUserService {
     public AppUser findAppUserById(Long appUserId) {
         Optional<AppUser> appUserOptional = appUserRepository.findById(appUserId);
         if(appUserOptional.isEmpty()){
-           // throw new AppUserNotFoundException(appUserId);
+           throw new AppUserNotFoundException(appUserId);
         }
         return appUserOptional.get();
     }

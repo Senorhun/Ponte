@@ -8,6 +8,7 @@ import org.ponte.dto.ContactCreateCommand;
 import org.ponte.dto.ContactInfo;
 import org.ponte.dto.ContactLocationCreateCommand;
 import org.ponte.dto.ContactLocationInfo;
+import org.ponte.exceptionHandling.ContactNotFoundException;
 import org.ponte.repository.ContactRepository;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +46,7 @@ public class ContactService {
     public Contact findContactById(Long contactId) {
         Optional<Contact> appUserOptional = contactRepository.findById(contactId);
         if(appUserOptional.isEmpty()){
-            // throw new ContactNotFoundException(appUserId);
+             throw new ContactNotFoundException(contactId);
         }
         return appUserOptional.get();
     }

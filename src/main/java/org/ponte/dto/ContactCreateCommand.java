@@ -22,7 +22,6 @@ public class ContactCreateCommand {
     @NotEmpty(message = "description cannot be empty.")
     private String description;
 
-
     @NotNull(message = "appUserId cannot be null.")
     private Long appUserId;
 
