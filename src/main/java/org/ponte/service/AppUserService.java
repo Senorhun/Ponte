@@ -42,4 +42,9 @@ public class AppUserService {
         }
         return appUserOptional.get();
     }
+
+    public void deleteAppUser(Long id) {
+        AppUser appUser = findAppUserById(id);
+        appUserRepository.delete(appUser);
+    }
 }
