@@ -33,4 +33,11 @@ public class AppUserController {
         appUserService.deleteAppUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/logicalDeleteForUser/{userId}")
+    public ResponseEntity<Void> logicalDeleteForUser(@PathVariable("userId") Long id) {
+        log.info("Http request, PUT / /api/users/logicalDeleteForUser/{userId} with variable: " + id);
+        appUserService.logicalDelete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

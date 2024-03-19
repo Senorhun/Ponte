@@ -33,13 +33,13 @@ public class AppUserService {
         appUser.setEmail(command.getEmail());
         appUser.setPassword(command.getPassword()); //B-crypt!!
         appUserRepository.save(appUser);
-        return modelMapper.map(appUser,AppUserInfo.class);
+        return modelMapper.map(appUser, AppUserInfo.class);
     }
 
     public AppUser findAppUserById(Long appUserId) {
         Optional<AppUser> appUserOptional = appUserRepository.findById(appUserId);
-        if(appUserOptional.isEmpty()){
-           throw new AppUserNotFoundException(appUserId);
+        if (appUserOptional.isEmpty()) {
+            throw new AppUserNotFoundException(appUserId);
         }
         return appUserOptional.get();
     }
@@ -47,5 +47,12 @@ public class AppUserService {
     public void deleteAppUser(Long id) {
         AppUser appUser = findAppUserById(id);
         appUserRepository.delete(appUser);
+    }
+
+    public void logicalDelete(Long id) {
+        AppUser appUser = findAppUserById(id);
+        appUser.setFirstName(null);
+        appUser.setLastName(null);
+        appUserRepository.save(appUser);
     }
 }
