@@ -8,9 +8,9 @@ server:
 
 spring:
   datasource:
-    url:  jdbc:postgresql://localhost:5432/ponte?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    url:  jdbc:postgresql://localhost:5432/postgres?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: postgres
-    password: postgresSQLpassword
+    password: postgreSQLpassword
     driver-class-name: org.postgresql.Driver
 
   jpa:
