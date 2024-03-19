@@ -65,17 +65,17 @@
             <artifactId>modelmapper</artifactId>
             <version>2.4.5</version>
         </dependency>
-        <!--<dependency>  default security configurations and libraries for authentication and authorization
+        <dependency>  <!--default security configurations and libraries for authentication and authorization -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-         facilitating testing of security configurations and components
-      <dependency>
+
+      <dependency> <!-- facilitating testing of security configurations and components -->
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <version>5.0.0.RELEASE</version>
             <scope>test</scope>
-        </dependency> -->
+        </dependency>
         <dependency> <!-- for unit testing-->
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

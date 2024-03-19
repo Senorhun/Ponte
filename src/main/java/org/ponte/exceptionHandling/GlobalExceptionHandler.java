@@ -54,4 +54,26 @@ public class GlobalExceptionHandler {
         log.error("Error in validation: " + validationError.getField() + ": " + validationError.getErrorMessage());
         return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(UserEmailNotFoundException.class)
+    public ResponseEntity<List<ValidationError>> handleUserEmailNotFoundException(UserEmailNotFoundException exception) {
+        ValidationError validationError = new ValidationError("appUserMail",
+                "appUserMail not found with mail: " + exception.getEmail());
+        log.error("Error in validation: " + validationError.getField() + ": " + validationError.getErrorMessage());
+        return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(PasswordNotValidException.class)
+    public ResponseEntity<List<ValidationError>> handlePasswordNotValidException(PasswordNotValidException exception) {
+        ValidationError validationError = new ValidationError("Password",
+                "Invalid password. It must be at least 8 characters long, contain at least one of these [A-Z], and at least one of these [!@#$%^&*()-_+=].");
+        log.error("Error in validation: " + validationError.getField() + ": " + validationError.getErrorMessage());
+        return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DuplicateEmailException.class)
+    public ResponseEntity<List<ValidationError>> handleDuplicateEmailException(DuplicateEmailException exception) {
+        ValidationError validationError = new ValidationError("Email",
+                "User has already registered with email: " + exception.getEmail());
+        log.error("Error in validation: " + validationError.getField() + ": " + validationError.getErrorMessage());
+        return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
+    }
 }

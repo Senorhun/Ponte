@@ -6,6 +6,7 @@ import org.ponte.service.ContactLocationService;
 import org.ponte.service.ContactService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,6 +25,7 @@ public class ContactController {
     }
 
     @PostMapping("/createContactForUser")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<ContactInfo> createContactForUser(@Valid @RequestBody ContactCreateCommand command) {
         log.info("Http request, POST / /api/users/createContactForUser");
         ContactInfo contactInfo = contactService.createContactForUser(command);
@@ -31,6 +33,7 @@ public class ContactController {
     }
 
     @DeleteMapping("/deleteContactById/{contactId}")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<Void> deleteContact(@PathVariable("contactId") Long id) {
         log.info("Http request, DELETE / /api/users/deleteContact/{contactId} with variable: " + id);
         contactService.deleteContact(id);
@@ -38,6 +41,7 @@ public class ContactController {
     }
 
     @PostMapping("/createContactLocationForContact")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<ContactLocationInfo> createContactLocationForContact(@Valid @RequestBody ContactLocationCreateCommand command) {
         log.info("Http request, POST / /api/users/createContactLocationForContact");
         ContactLocationInfo contactLocationInfo = contactLocationService.createContactLocationForContact(command);
@@ -45,6 +49,7 @@ public class ContactController {
     }
 
     @DeleteMapping("/deleteContactLocationById/{contactLocationId}")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<Void> deleteContactLocation(@PathVariable("contactLocationId") Long id) {
         log.info("Http request, DELETE / /api/users/deleteContactLocation/{contactLocationId} with variable: " + id);
         contactLocationService.deleteContactLocation(id);
@@ -52,7 +57,7 @@ public class ContactController {
     }
 
     @GetMapping("/findAllContacts")
-    // @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<List<ContactListInfo>> findAllContacts(@RequestParam(defaultValue = "0") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
         log.info("Http request, GET / /api/contacts/findAllContacts");
         List<ContactListInfo> contactsListInfos = contactService.findAllContacts(pageNo, pageSize);
