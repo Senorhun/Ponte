@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ponte.dto.AppUserCreateCommand;
 import org.ponte.dto.AppUserInfo;
 import org.ponte.dto.AppUserListInfo;
-import org.ponte.dto.ContactListInfo;
+import org.ponte.dto.AppUserUpdateCommand;
 import org.ponte.service.AppUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +30,7 @@ public class AppUserController {
     public AppUserController(AppUserService appUserService) {
         this.appUserService = appUserService;
     }
+
     @GetMapping("/me")
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<UserDetails> getLoggedInUser() {
@@ -38,6 +39,7 @@ public class AppUserController {
         UserDetails loggedInUser = (User) authentication.getPrincipal();
         return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
     }
+
     @GetMapping("/logout")
     public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
         log.info("Http request, GET / /api/users/logout");
@@ -47,6 +49,7 @@ public class AppUserController {
         }
         return new ResponseEntity<>("Logout successful", HttpStatus.OK);
     }
+
     @PostMapping("/createUser")
     @Secured({"ROLE_ADMIN"})
     public ResponseEntity<AppUserInfo> createAppUser(@Valid @RequestBody AppUserCreateCommand command) {
@@ -63,6 +66,14 @@ public class AppUserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping("/updateAppUser/{appuserId}")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    public ResponseEntity<AppUserInfo> updateAppUserById(@PathVariable("appuserId") Long id, @Valid @RequestBody AppUserUpdateCommand command) {
+        log.info("Http request, PUT /api/users/{appuserId} body: " + command.toString() + " with variable: " + id);
+        AppUserInfo appUserInfo = appUserService.updateAppUserById(id, command);
+        return new ResponseEntity<>(appUserInfo, HttpStatus.ACCEPTED);
+    }
+
     @PutMapping("/logicalDeleteForUser/{userId}")
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<Void> logicalDeleteForUser(@PathVariable("userId") Long id) {
@@ -70,11 +81,20 @@ public class AppUserController {
         appUserService.logicalDelete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @GetMapping("/findAllAppUsers")
     @Secured({"ROLE_ADMIN"})
     public ResponseEntity<List<AppUserListInfo>> findAllAppUsers(@RequestParam(defaultValue = "0") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
         log.info("Http request, GET / /api/users/findAllAppUsers");
         List<AppUserListInfo> appUserListInfos = appUserService.findAllAppUsers(pageNo, pageSize);
         return new ResponseEntity<>(appUserListInfos, HttpStatus.FOUND);
+    }
+
+    @GetMapping("/findUserById/{userId}")
+    @Secured({"ROLE_ADMIN"})
+    public ResponseEntity<AppUserInfo> findUserById(@PathVariable("userId") Long id) {
+        log.info("Http request, GET / /api/users/findUserById/{userId} with variable: " + id);
+        AppUserInfo appUserInfo = appUserService.getUserById(id);
+        return new ResponseEntity<>(appUserInfo, HttpStatus.FOUND);
     }
 }

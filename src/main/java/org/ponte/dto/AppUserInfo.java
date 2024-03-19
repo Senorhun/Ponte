@@ -13,6 +13,7 @@ public class AppUserInfo {
     private String firstName;
     private String lastName;
     private String email;
+    private String extraInfo;
     private LocalDateTime creationDate;
     private LocalDateTime lastModifiedDate;
 }

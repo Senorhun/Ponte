@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppUserCreateCommand {
+public class AppUserUpdateCommand {
     @NotBlank(message = "firstName cannot be blank.")
     @NotNull(message = "firstName cannot be null.")
     @NotEmpty(message = "firstName cannot be empty.")
@@ -33,6 +33,5 @@ public class AppUserCreateCommand {
     @NotNull(message = "password cannot be null.")
     @NotEmpty(message = "password cannot be empty.")
     private String password;
-
     private String extraInfo;
 }

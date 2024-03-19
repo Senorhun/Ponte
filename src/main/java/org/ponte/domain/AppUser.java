@@ -32,6 +32,9 @@ public class AppUser {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "extra_info")
+    private String extraInfo;
+
     @CreationTimestamp
     @Column(name = "creation_date", updatable = false)
     private LocalDateTime creationDate;

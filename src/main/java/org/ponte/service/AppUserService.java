@@ -2,11 +2,10 @@ package org.ponte.service;
 
 import org.modelmapper.ModelMapper;
 import org.ponte.domain.AppUser;
-import org.ponte.domain.Contact;
 import org.ponte.dto.AppUserCreateCommand;
 import org.ponte.dto.AppUserInfo;
 import org.ponte.dto.AppUserListInfo;
-import org.ponte.dto.ContactListInfo;
+import org.ponte.dto.AppUserUpdateCommand;
 import org.ponte.exceptionHandling.AppUserNotFoundException;
 import org.ponte.exceptionHandling.DuplicateEmailException;
 import org.ponte.exceptionHandling.UserEmailNotFoundException;
@@ -53,7 +52,6 @@ public class AppUserService implements UserDetailsService {
 
         appUser.setCreationDate(LocalDateTime.now());
         appUser.setEmail(command.getEmail());
-        //appUser.setPassword(command.getPassword()); //B-crypt!!
         appUserRepository.save(appUser);
         return modelMapper.map(appUser, AppUserInfo.class);
     }
@@ -77,6 +75,7 @@ public class AppUserService implements UserDetailsService {
         appUser.setLastName(null);
         appUserRepository.save(appUser);
     }
+
     public AppUser findUserByEmail(String email) {
         Optional<AppUser> optionalAppUser = appUserRepository.findByEmail(email);
         if (optionalAppUser.isEmpty()) {
@@ -84,9 +83,10 @@ public class AppUserService implements UserDetailsService {
         }
         return optionalAppUser.get();
     }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-     //   System.out.println("email" + email);
+        //   System.out.println("email" + email);
         AppUser appUser = findUserByEmail(email);
 
         String[] roles = appUser.getRoles().stream()
@@ -101,13 +101,34 @@ public class AppUserService implements UserDetailsService {
     }
 
     public List<AppUserListInfo> findAllAppUsers(int pageNo, int pageSize) {
-            PageRequest pageable = PageRequest.of(pageNo, pageSize);
-            Page<AppUser> contactPage = appUserRepository.findAll(pageable);
+        PageRequest pageable = PageRequest.of(pageNo, pageSize);
+        Page<AppUser> contactPage = appUserRepository.findAll(pageable);
 
-            List<AppUserListInfo> appUserListInfos = contactPage.getContent()
-                    .stream()
-                    .map(appUser -> modelMapper.map(appUser, AppUserListInfo.class))
-                    .collect(Collectors.toList());
-            return appUserListInfos;
+        List<AppUserListInfo> appUserListInfos = contactPage.getContent()
+                .stream()
+                .map(appUser -> modelMapper.map(appUser, AppUserListInfo.class))
+                .collect(Collectors.toList());
+        return appUserListInfos;
+    }
+
+    public AppUserInfo updateAppUserById(Long id, AppUserUpdateCommand command) {
+        PasswordValidator.validatePassword(command.getPassword());
+
+        AppUser appUser = findAppUserById(id);
+        if (appUserRepository.existsByEmail(command.getEmail()) && !appUser.getEmail().equals(command.getEmail())) {
+            throw new DuplicateEmailException(command.getEmail());
+        }
+        appUser.setFirstName(command.getFirstName());
+        appUser.setLastName(command.getLastName());
+        appUser.setPassword(passwordEncoder.encode(command.getPassword()));
+        appUser.setEmail(command.getEmail());
+        appUser.setExtraInfo(command.getExtraInfo());
+
+        return modelMapper.map(appUser, AppUserInfo.class);
+    }
+
+    public AppUserInfo getUserById(Long id) {
+        AppUser appUser = findAppUserById(id);
+        return modelMapper.map(appUser, AppUserInfo.class);
     }
 }
