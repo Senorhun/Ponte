@@ -36,15 +36,19 @@ public class ContactLocationCreateCommand {
     @NotEmpty(message = "postalCode cannot be empty.")
     private String postalCode;
 
-    @NotBlank(message = "email cannot be blank.")
+   /* @NotBlank(message = "email cannot be blank.")
     @NotNull(message = "email cannot be null.")
     @NotEmpty(message = "email cannot be empty.")
     @Email(message = "Invalid email address.")
+
+    */
     private String email;
 
-    @NotBlank(message = "phone cannot be blank.")
+    /*@NotBlank(message = "phone cannot be blank.")
     @NotNull(message = "phone cannot be null.")
     @NotEmpty(message = "phone cannot be empty.")
+
+     */
     private String phone;
 
     @NotNull(message = "appUserId cannot be null.")

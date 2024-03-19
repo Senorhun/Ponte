@@ -47,4 +47,11 @@ public class GlobalExceptionHandler {
         log.error("Error in validation: " + validationError.getField() + ": " + validationError.getErrorMessage());
         return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(EmailOrPhoneNotValidException.class)
+    public ResponseEntity<List<ValidationError>> EmailOrPhoneNotValidException() {
+        ValidationError validationError = new ValidationError("Invalid contact information",
+                "Entering a valid e-mail or phone number is mandatory.");
+        log.error("Error in validation: " + validationError.getField() + ": " + validationError.getErrorMessage());
+        return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
+    }
 }
