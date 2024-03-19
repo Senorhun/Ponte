@@ -1,6 +1,7 @@
 package org.ponte.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.ponte.domain.ContactLocation;
 import org.ponte.dto.ContactCreateCommand;
 import org.ponte.dto.ContactInfo;
 import org.ponte.dto.ContactLocationCreateCommand;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/contacts")

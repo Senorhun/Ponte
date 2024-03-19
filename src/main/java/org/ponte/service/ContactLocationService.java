@@ -6,7 +6,11 @@ import org.ponte.domain.ContactLocation;
 import org.ponte.dto.ContactLocationCreateCommand;
 import org.ponte.dto.ContactLocationInfo;
 import org.ponte.repository.ContactLocationRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -33,7 +37,12 @@ public class ContactLocationService {
         return modelMapper.map(savedContactLocation, ContactLocationInfo.class);
     }
 
-   /* private ContactLocation findContactLocationById(Long contactLocationId) {
+    public void deleteContactLocation(Long id) {
+        ContactLocation contactLocation = findContactLocationById(id);
+        contactLocationRepository.delete(contactLocation);
+    }
+
+    private ContactLocation findContactLocationById(Long contactLocationId) {
         Optional<ContactLocation> contactLocationOptional = contactLocationRepository.findById(contactLocationId);
         if(contactLocationOptional.isEmpty()){
             // throw new ContactLocationNotFoundException(appUserId);
@@ -41,5 +50,4 @@ public class ContactLocationService {
         return contactLocationOptional.get();
     }
 
-    */
 }
