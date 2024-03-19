@@ -1,6 +1,7 @@
 package org.ponte.service;
 
 import org.modelmapper.ModelMapper;
+import org.ponte.repository.AppUserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
