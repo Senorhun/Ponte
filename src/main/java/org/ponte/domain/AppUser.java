@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name="app_user")
+@Table(name = "app_user")
 @Data
 @NoArgsConstructor
 public class AppUser {
@@ -18,7 +18,7 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
 
-    //company name nem kell emberi név
+
     @Column(name = "first_name")
     private String firstName;
 

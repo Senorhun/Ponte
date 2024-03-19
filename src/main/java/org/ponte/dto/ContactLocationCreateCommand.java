@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class ContactLocationCreateCommand {
 
-
     @NotBlank(message = "lastName cannot be blank.")
     @NotNull(message = "lastName cannot be null.")
     @NotEmpty(message = "lastName cannot be empty.")
@@ -27,7 +26,6 @@ public class ContactLocationCreateCommand {
     @NotEmpty(message = "lastName cannot be empty.")
     @Column(name = "street")
     private String street;
-
 
     @NotNull(message = "lastName cannot be null.")
     @Column(name = "house_number")

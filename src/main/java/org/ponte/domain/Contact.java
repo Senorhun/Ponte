@@ -3,12 +3,11 @@ package org.ponte.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="contact")
+@Table(name = "contact")
 @Data
 @NoArgsConstructor
 public class Contact {

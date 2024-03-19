@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name="location")
+@Table(name = "location")
 @Data
 @NoArgsConstructor
 public class ContactLocation {

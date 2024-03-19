@@ -3,11 +3,7 @@ package org.ponte.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.ponte.dto.AppUserCreateCommand;
 import org.ponte.dto.AppUserInfo;
-//import org.ponte.dto.ContactInfo;
-import org.ponte.dto.ContactCreateCommand;
-import org.ponte.dto.ContactInfo;
 import org.ponte.service.AppUserService;
-import org.ponte.service.ContactService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,15 +14,14 @@ import javax.validation.Valid;
 @RequestMapping("/api/users")
 @Slf4j
 public class AppUserController {
-
     private final AppUserService appUserService;
-
 
     public AppUserController(AppUserService appUserService) {
         this.appUserService = appUserService;
     }
+
     @PostMapping("/createUser")
-    public ResponseEntity<AppUserInfo> createAppUser(@Valid @RequestBody AppUserCreateCommand command){
+    public ResponseEntity<AppUserInfo> createAppUser(@Valid @RequestBody AppUserCreateCommand command) {
         log.info("Http request, POST / /api/users/createUser");
         AppUserInfo appUserInfo = appUserService.createAppUser(command);
         return new ResponseEntity<>(appUserInfo, HttpStatus.CREATED);
@@ -38,9 +33,4 @@ public class AppUserController {
         appUserService.deleteAppUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
-
-
 }

@@ -1,7 +1,6 @@
 package org.ponte.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ponte.domain.ContactLocation;
 import org.ponte.dto.ContactCreateCommand;
 import org.ponte.dto.ContactInfo;
 import org.ponte.dto.ContactLocationCreateCommand;
@@ -13,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/contacts")
@@ -29,7 +26,7 @@ public class ContactController {
     }
 
     @PostMapping("/createContactForUser")
-    public ResponseEntity<ContactInfo> createContactForUser(@Valid @RequestBody ContactCreateCommand command){
+    public ResponseEntity<ContactInfo> createContactForUser(@Valid @RequestBody ContactCreateCommand command) {
         log.info("Http request, POST / /api/users/createContactForUser");
         ContactInfo contactInfo = contactService.createContactForUser(command);
         return new ResponseEntity<>(contactInfo, HttpStatus.CREATED);
@@ -43,7 +40,7 @@ public class ContactController {
     }
 
     @PostMapping("/createContactLocationForContact")
-    public ResponseEntity<ContactLocationInfo> createContactLocationForContact(@Valid @RequestBody ContactLocationCreateCommand command){
+    public ResponseEntity<ContactLocationInfo> createContactLocationForContact(@Valid @RequestBody ContactLocationCreateCommand command) {
         log.info("Http request, POST / /api/users/createContactLocationForContact");
         ContactLocationInfo contactLocationInfo = contactLocationService.createContactLocationForContact(command);
         return new ResponseEntity<>(contactLocationInfo, HttpStatus.CREATED);

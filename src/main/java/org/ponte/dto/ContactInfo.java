@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 public class ContactInfo {
     private String companyName;
     private String description;
-
-
 }
 
 
