@@ -3,17 +3,19 @@ package org.ponte.service;
 import org.modelmapper.ModelMapper;
 import org.ponte.domain.AppUser;
 import org.ponte.domain.Contact;
-import org.ponte.domain.ContactLocation;
 import org.ponte.dto.ContactCreateCommand;
 import org.ponte.dto.ContactInfo;
-import org.ponte.dto.ContactLocationCreateCommand;
-import org.ponte.dto.ContactLocationInfo;
+import org.ponte.dto.ContactListInfo;
 import org.ponte.exceptionHandling.ContactNotFoundException;
 import org.ponte.repository.ContactRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -24,14 +26,11 @@ public class ContactService {
     private final AppUserService appUserService;
 
 
-
     public ContactService(ModelMapper modelMapper, ContactRepository contactRepository, AppUserService appUserService) {
         this.modelMapper = modelMapper;
         this.contactRepository = contactRepository;
         this.appUserService = appUserService;
-
     }
-
 
     public ContactInfo createContactForUser(ContactCreateCommand command) {
 
@@ -45,8 +44,8 @@ public class ContactService {
 
     public Contact findContactById(Long contactId) {
         Optional<Contact> appUserOptional = contactRepository.findById(contactId);
-        if(appUserOptional.isEmpty()){
-             throw new ContactNotFoundException(contactId);
+        if (appUserOptional.isEmpty()) {
+            throw new ContactNotFoundException(contactId);
         }
         return appUserOptional.get();
     }
@@ -54,5 +53,16 @@ public class ContactService {
     public void deleteContact(Long id) {
         Contact contact = findContactById(id);
         contactRepository.delete(contact);
+    }
+
+    public List<ContactListInfo> findAllContacts(int pageNo, int pageSize) {
+        PageRequest pageable = PageRequest.of(pageNo, pageSize);
+        Page<Contact> contactPage = contactRepository.findAll(pageable);
+
+        List<ContactListInfo> contactsListInfos = contactPage.getContent()
+                .stream()
+                .map(contact -> modelMapper.map(contact, ContactListInfo.class))
+                .collect(Collectors.toList());
+        return contactsListInfos;
     }
 }

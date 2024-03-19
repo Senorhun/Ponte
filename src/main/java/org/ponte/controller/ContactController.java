@@ -1,10 +1,7 @@
 package org.ponte.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ponte.dto.ContactCreateCommand;
-import org.ponte.dto.ContactInfo;
-import org.ponte.dto.ContactLocationCreateCommand;
-import org.ponte.dto.ContactLocationInfo;
+import org.ponte.dto.*;
 import org.ponte.service.ContactLocationService;
 import org.ponte.service.ContactService;
 import org.springframework.http.HttpStatus;
@@ -12,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/contacts")
@@ -51,5 +49,13 @@ public class ContactController {
         log.info("Http request, DELETE / /api/users/deleteContactLocation/{contactLocationId} with variable: " + id);
         contactLocationService.deleteContactLocation(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/findAllContacts")
+    // @Secured({"ROLE_ADMIN"})
+    public ResponseEntity<List<ContactListInfo>> findAllContacts(@RequestParam(defaultValue = "0") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
+        log.info("Http request, GET / /api/contacts/findAllContacts");
+        List<ContactListInfo> contactsListInfos = contactService.findAllContacts(pageNo, pageSize);
+        return new ResponseEntity<>(contactsListInfos, HttpStatus.FOUND);
     }
 }
