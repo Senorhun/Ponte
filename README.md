@@ -47,34 +47,40 @@
 > - The project can be cloned from the [GitHub](https://github.com/Senorhun/Ponte.git) repository
 
 ### **Documentation:**
-> src/java/org/ponte/config
+> src/main/java/org/ponte/config
 > - Package contains mostly the security classes 
 > - Plus the ModelMapper which can help decreasing boilerplate codes
 
-> src/java/org/ponte/controller 
+> src/main/java/org/ponte/controller 
 > - AppUserController contains CRUD methods for appUsers
 > - ContactController contains CRUD methods for contacts and contact information
 
-> src/java/org/ponte/domain
+> src/main/java/org/ponte/domain
 > - Package contains all the Entities what are our tables to store data
 > - 3 classes and 1 enum UserRole which can be modified for adding more security level
 
-> src/java/org/ponte/dto
+> src/main/java/org/ponte/dto
 > - Package contains all the Commands and Infos
 > - It is important that everything has a different class like AppUserInfo and AppUserInfoList
 > - This way it will be better for future modifications
 > - There are validation annotations in Command classes so data can be validated instantly
 
-> src/java/org/ponte/exceptionHandling
+> src/main/java/org/ponte/exceptionHandling
 > - Package contains every exception what are handled with specific messages for better understandability
 
-> src/java/org/ponte/repository
+> src/main/java/org/ponte/repository
 > - Package contains every repository what communicates with database
 > - There are plenty of space for future ypql queries which can help with specific reads from the database
  
-> src/java/org/ponte/service
-> - Package contains every business logic and some complex validations (e.g.: Email Or Phone)
+> src/main/java/org/ponte/service
+> - Package contains every business logic and some complex validations (e.g.: EmailOrPhone)
  
 > src/main/resources
-> - sql!!
+> - For comfortable handling there are sql files preapared to fill database and try out functions
+> - Run the application then select and run the sql files appUsers->user_role->contact->location
+> - Yaml file is here as well including vital informations about our database
+ 
+> src/target/test-classes/org/ponte/AppUserControllerTest
+> - Package contains tests for the smooth and stable running of the application
+> - Testing was mainly running through postman
 </div>
