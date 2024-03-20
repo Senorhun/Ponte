@@ -57,10 +57,26 @@ public class ContactController {
     }
 
     @GetMapping("/findAllContacts")
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @Secured({"ROLE_ADMIN"})
     public ResponseEntity<List<ContactListInfo>> findAllContacts(@RequestParam(defaultValue = "0") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
         log.info("Http request, GET / /api/contacts/findAllContacts");
         List<ContactListInfo> contactsListInfos = contactService.findAllContacts(pageNo, pageSize);
         return new ResponseEntity<>(contactsListInfos, HttpStatus.FOUND);
     }
+    @GetMapping("/findAllContactLocations")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    public ResponseEntity<List<ContactLocationListInfo>> findAllContactLocations(@RequestParam(defaultValue = "0") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
+        log.info("Http request, GET / /api/contacts/findAllContactLocations");
+        List<ContactLocationListInfo> contactLocationListInfos = contactService.findAllContactLocations(pageNo, pageSize);
+        return new ResponseEntity<>(contactLocationListInfos, HttpStatus.FOUND);
+    }
+   /* @GetMapping("/findContactLocationsById/{contactId}")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    public ResponseEntity<List<ContactListInfo>> deleteContact(@PathVariable("contactId") Long id) {
+        log.info("Http request, DELETE / /api/users/deleteContact/{contactId} with variable: " + id);
+        contactService.deleteContact(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    */
 }
