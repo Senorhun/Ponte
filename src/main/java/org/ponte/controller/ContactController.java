@@ -65,7 +65,7 @@ public class ContactController {
     }
 
     @GetMapping("/findAllContactLocations")
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @Secured({"ROLE_ADMIN"})
     public ResponseEntity<List<ContactLocationListInfo>> findAllContactLocations(@RequestParam(defaultValue = "0") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
         log.info("Http request, GET / /api/contacts/findAllContactLocations");
         List<ContactLocationListInfo> contactLocationListInfos = contactService.findAllContactLocations(pageNo, pageSize);
@@ -73,7 +73,7 @@ public class ContactController {
     }
 
     @GetMapping("/findContactById/{contactId}")
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<ContactInfo> findContactById(@PathVariable("contactId") Long id) {
         log.info("Http request, GET / /api/contacts/findContactById/{contactId} with variable: " + id);
         ContactInfo contactInfo = contactService.getContactById(id);

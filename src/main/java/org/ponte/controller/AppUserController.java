@@ -91,7 +91,7 @@ public class AppUserController {
     }
 
     @GetMapping("/findUserById/{userId}")
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<AppUserInfo> findUserById(@PathVariable("userId") Long id) {
         log.info("Http request, GET / /api/users/findUserById/{userId} with variable: " + id);
         AppUserInfo appUserInfo = appUserService.getUserById(id);
