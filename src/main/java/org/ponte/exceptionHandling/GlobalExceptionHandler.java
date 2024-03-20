@@ -47,6 +47,7 @@ public class GlobalExceptionHandler {
         log.error("Error in validation: " + validationError.getField() + ": " + validationError.getErrorMessage());
         return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(EmailOrPhoneNotValidException.class)
     public ResponseEntity<List<ValidationError>> EmailOrPhoneNotValidException() {
         ValidationError validationError = new ValidationError("Invalid contact information",
@@ -54,6 +55,7 @@ public class GlobalExceptionHandler {
         log.error("Error in validation: " + validationError.getField() + ": " + validationError.getErrorMessage());
         return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(UserEmailNotFoundException.class)
     public ResponseEntity<List<ValidationError>> handleUserEmailNotFoundException(UserEmailNotFoundException exception) {
         ValidationError validationError = new ValidationError("appUserMail",
@@ -61,6 +63,7 @@ public class GlobalExceptionHandler {
         log.error("Error in validation: " + validationError.getField() + ": " + validationError.getErrorMessage());
         return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(PasswordNotValidException.class)
     public ResponseEntity<List<ValidationError>> handlePasswordNotValidException(PasswordNotValidException exception) {
         ValidationError validationError = new ValidationError("Password",

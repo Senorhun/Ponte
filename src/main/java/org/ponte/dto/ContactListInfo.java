@@ -3,7 +3,6 @@ package org.ponte.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.ponte.domain.ContactLocation;
 
 import java.util.List;
 

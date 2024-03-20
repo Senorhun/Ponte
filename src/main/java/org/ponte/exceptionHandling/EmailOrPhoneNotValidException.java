@@ -4,6 +4,4 @@ public class EmailOrPhoneNotValidException extends RuntimeException {
 
     public EmailOrPhoneNotValidException() {
     }
-
-
 }

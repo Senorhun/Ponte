@@ -13,7 +13,6 @@ public class ContactInfo {
     private String companyName;
     private String description;
     private List<ContactLocationInfo> contactLocationList;
-
 }
 
 

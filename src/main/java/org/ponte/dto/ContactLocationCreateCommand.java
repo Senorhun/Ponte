@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -36,12 +35,12 @@ public class ContactLocationCreateCommand {
     @NotEmpty(message = "postalCode cannot be empty.")
     private String postalCode;
 
-   /* @NotBlank(message = "email cannot be blank.")
-    @NotNull(message = "email cannot be null.")
-    @NotEmpty(message = "email cannot be empty.")
-    @Email(message = "Invalid email address.")
+    /* @NotBlank(message = "email cannot be blank.")
+     @NotNull(message = "email cannot be null.")
+     @NotEmpty(message = "email cannot be empty.")
+     @Email(message = "Invalid email address.")
 
-    */
+     */
     private String email;
 
     /*@NotBlank(message = "phone cannot be blank.")

@@ -1,6 +1,6 @@
 package org.ponte.exceptionHandling;
 
-public class ContactLocationNotFoundException extends RuntimeException{
+public class ContactLocationNotFoundException extends RuntimeException {
     private final Long ContactLocationId;
 
     public ContactLocationNotFoundException(Long contactLocationId) {

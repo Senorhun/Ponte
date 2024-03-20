@@ -53,7 +53,7 @@ public class AppUserController {
     @PostMapping("/createUser")
     @Secured({"ROLE_ADMIN"})
     public ResponseEntity<AppUserInfo> createAppUser(@Valid @RequestBody AppUserCreateCommand command) {
-        log.info("Http request, POST / /api/users/createUser");
+        log.info("Http request, POST / /api/users/createUser with command: " + command.toString());
         AppUserInfo appUserInfo = appUserService.createAppUser(command);
         return new ResponseEntity<>(appUserInfo, HttpStatus.CREATED);
     }
@@ -69,7 +69,7 @@ public class AppUserController {
     @PutMapping("/updateAppUser/{appuserId}")
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<AppUserInfo> updateAppUserById(@PathVariable("appuserId") Long id, @Valid @RequestBody AppUserUpdateCommand command) {
-        log.info("Http request, PUT /api/users/{appuserId} body: " + command.toString() + " with variable: " + id);
+        log.info("Http request, PUT /api/users/updateAppUser/{appuserId} body: " + command.toString() + " with variable: " + id);
         AppUserInfo appUserInfo = appUserService.updateAppUserById(id, command);
         return new ResponseEntity<>(appUserInfo, HttpStatus.ACCEPTED);
     }
