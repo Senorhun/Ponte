@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "bd4e484e-41ca-4dcb-8d74-1d63670a5825",
+		"name": "Ponte",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31010041"
+	},
+	"item": [
+		{
+			"name": "createAppUser",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "Aaaaaaa!",
+						"username": "a@gmail.com"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"b\",\r\n    \"lastName\": \"bb\",\r\n    \"email\": \"b@gmail.com\",\r\n    \"password\":\"Aaaaaaa!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/users/createUser"
+			},
+			"response": []
+		},
+		{
+			"name": "createContactForUser",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "potter@gmail.com",
+						"password": "testHotel1234!"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companyName\": \"b1\",\r\n    \"description\": \"good\",\r\n    \"appUserId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/contacts/createContactForUser"
+			},
+			"response": []
+		},
+		{
+			"name": "createContactLocationForContact",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "potter@gmail.com",
+						"password": "testHotel1234!"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"BP\",\r\n    \"street\": \"flower\",\r\n    \"houseNumber\":2 ,\r\n    \"postalCode\":\"1655\" ,\r\n    \"phone\": \"+2345336\",\r\n    \"email\": \"b@gmail.com\",\r\n    \r\n    \"contactId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/contacts/createContactLocationForContact"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteContactById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/contacts/deleteContactById/3"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteContactLocationById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "potter@gmail.com",
+						"password": "testHotel1234!"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/contacts/deleteContactLocationById/3"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUserById",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/users/deleteUserById/5"
+			},
+			"response": []
+		},
+		{
+			"name": "findAllContacts",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "potter@gmail.com",
+						"password": "testHotel1234!"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/findAllContacts?pageNo=0&pageSize=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"findAllContacts"
+					],
+					"query": [
+						{
+							"key": "pageNo",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllContactLocations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/findAllContacts?pageNo=0&pageSize=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"findAllContacts"
+					],
+					"query": [
+						{
+							"key": "pageNo",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllAppUsers",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "potter@gmail.com",
+						"password": "testHotel1234!"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/findAllAppUsers?pageNo=0&pageSize=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"findAllAppUsers"
+					],
+					"query": [
+						{
+							"key": "pageNo",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAppUserById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "testHotel1234!",
+						"username": "potter@gmail.com"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/users/findUserById/1"
+			},
+			"response": []
+		},
+		{
+			"name": "findContactById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "testHotel1234!",
+						"username": "potter@gmail.com"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/contacts/findContactById/2"
+			},
+			"response": []
+		},
+		{
+			"name": "logicalDeleteForUser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": "http://localhost:8080/api/users/logicalDeleteForUser/1"
+			},
+			"response": []
+		},
+		{
+			"name": "updateAppUser",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "potter@gmail.com",
+						"password": "testHotel1234!"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"9\",\r\n    \"lastName\": \"a\",\r\n    \"email\": \"123@gmail.com\",\r\n    \"password\":\"Daaaaaa!\",\r\n    \"extraInfo\":\"blabla\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/users/updateAppUser/2"
+			},
+			"response": []
+		}
+	]
+}

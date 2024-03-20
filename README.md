@@ -80,12 +80,14 @@
 
 > root directory of the project
 > - pom.xml file can be found here and contains important dependencies and more
-> src/main/test/java/org/ponte/controller
-> - For comfortable handling there are sql files preapared to fill database and try out functions
+
+> src/main/resources
+> - For comfortable handling there are sql files prepared to fill database and try out functions
 > - Run the application then select and run the sql files appUsers->user_role->contact->location
 > - Yaml file is here as well including vital informations about our database
+> - Postman file is easy to import into postman for testing
  
-> src/target/test-classes/org/ponte/AppUserControllerTest
+> src/test/java/org/ponte/controller/AppUserControllerTest
 > - Package contains tests for the smooth and stable running of the application
 > - Testing was mainly running through postman
 </div>
