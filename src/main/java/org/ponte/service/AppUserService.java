@@ -86,7 +86,7 @@ public class AppUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        //   System.out.println("email" + email);
+
         AppUser appUser = findUserByEmail(email);
 
         String[] roles = appUser.getRoles().stream()
