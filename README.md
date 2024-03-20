@@ -75,7 +75,7 @@
 > src/main/java/org/ponte/service
 > - Package contains every business logic and some complex validations (e.g.: EmailOrPhone)
  
-> src/main/resources
+> src/main/test/java/org/ponte/controller
 > - For comfortable handling there are sql files preapared to fill database and try out functions
 > - Run the application then select and run the sql files appUsers->user_role->contact->location
 > - Yaml file is here as well including vital informations about our database
