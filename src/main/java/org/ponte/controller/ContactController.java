@@ -70,13 +70,11 @@ public class ContactController {
         List<ContactLocationListInfo> contactLocationListInfos = contactService.findAllContactLocations(pageNo, pageSize);
         return new ResponseEntity<>(contactLocationListInfos, HttpStatus.FOUND);
     }
-   /* @GetMapping("/findContactLocationsById/{contactId}")
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    public ResponseEntity<List<ContactListInfo>> deleteContact(@PathVariable("contactId") Long id) {
-        log.info("Http request, DELETE / /api/users/deleteContact/{contactId} with variable: " + id);
-        contactService.deleteContact(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/findContactById/{contactId}")
+    @Secured({"ROLE_ADMIN"})
+    public ResponseEntity<ContactInfo> findContactById(@PathVariable("contactId") Long id) {
+        log.info("Http request, GET / /api/users/findContactById/{contactId} with variable: " + id);
+        ContactInfo contactInfo = contactService.getContactById(id);
+        return new ResponseEntity<>(contactInfo, HttpStatus.FOUND);
     }
-
-    */
 }

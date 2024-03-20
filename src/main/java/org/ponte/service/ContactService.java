@@ -4,10 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.ponte.domain.AppUser;
 import org.ponte.domain.Contact;
 import org.ponte.domain.ContactLocation;
-import org.ponte.dto.ContactCreateCommand;
-import org.ponte.dto.ContactInfo;
-import org.ponte.dto.ContactListInfo;
-import org.ponte.dto.ContactLocationListInfo;
+import org.ponte.dto.*;
 import org.ponte.exceptionHandling.ContactNotFoundException;
 import org.ponte.repository.ContactLocationRepository;
 import org.ponte.repository.ContactRepository;
@@ -81,5 +78,11 @@ public class ContactService {
                 .map(contactLocation -> modelMapper.map(contactLocation, ContactLocationListInfo.class))
                 .collect(Collectors.toList());
         return contactLocationListInfos;
+    }
+
+    public ContactInfo getContactById(Long id) {
+            Contact contact= findContactById(id);
+            return modelMapper.map(contact, ContactInfo.class);
+
     }
 }
