@@ -75,6 +75,11 @@
 > src/main/java/org/ponte/service
 > - Package contains every business logic and some complex validations (e.g.: EmailOrPhone)
  
+> src/main/java/org/ponte
+> - BackendApplication class is where you can run the application through the main method
+
+> root directory of the project
+> - pom.xml file can be found here and contains important dependencies and more
 > src/main/test/java/org/ponte/controller
 > - For comfortable handling there are sql files preapared to fill database and try out functions
 > - Run the application then select and run the sql files appUsers->user_role->contact->location
